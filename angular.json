@@ -3,5 +3,138 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "vs-angular-components-with-tailwinds": {
+      "projectType": "library",
+      "root": "projects/vs-angular-components-with-tailwinds",
+      "sourceRoot": "projects/vs-angular-components-with-tailwinds/src",
+      "prefix": "vs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/vs-angular-components-with-tailwinds/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/vs-angular-components-with-tailwinds/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/vs-angular-components-with-tailwinds/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/vs-angular-components-with-tailwinds/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "vs-angular-components-with-tailwinds-src": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/vs-angular-components-with-tailwinds-src",
+      "sourceRoot": "projects/vs-angular-components-with-tailwinds-src/src",
+      "prefix": "vs-angular-components-with-tailwinds-src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/vs-angular-components-with-tailwinds-src",
+            "index": "projects/vs-angular-components-with-tailwinds-src/src/index.html",
+            "main": "projects/vs-angular-components-with-tailwinds-src/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/vs-angular-components-with-tailwinds-src/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/vs-angular-components-with-tailwinds-src/src/favicon.ico",
+              "projects/vs-angular-components-with-tailwinds-src/src/assets"
+            ],
+            "styles": [
+              "projects/vs-angular-components-with-tailwinds-src/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "vs-angular-components-with-tailwinds-src:build:production"
+            },
+            "development": {
+              "browserTarget": "vs-angular-components-with-tailwinds-src:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vs-angular-components-with-tailwinds-src:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/vs-angular-components-with-tailwinds-src/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/vs-angular-components-with-tailwinds-src/src/favicon.ico",
+              "projects/vs-angular-components-with-tailwinds-src/src/assets"
+            ],
+            "styles": [
+              "projects/vs-angular-components-with-tailwinds-src/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
   }
 }

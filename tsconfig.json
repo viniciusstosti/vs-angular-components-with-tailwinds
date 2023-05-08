@@ -11,6 +11,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "paths": {
+      "vs-angular-components-with-tailwinds": [
+        "dist/vs-angular-components-with-tailwinds"
+      ]
+    },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
